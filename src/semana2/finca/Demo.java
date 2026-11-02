@@ -4,7 +4,7 @@ public class Demo {
         java.util.List<Activo> activos = java.util.List.of(
                 new Producto("PR-001", "Saco de urea 50 kg", 32.50, 40),
                 new Cultivo("CU-001", "Cacao CCN-51", 3.5, 1800.0),
-                new Animal("AN-001", "Bovino", 420.0, 1.85));
+                new Animal("AN-001", "Cangrejo", 3.5, 2.5));
         double total = 0;
         for (Activo a : activos) {
             double v = Valorador.valor(a);
