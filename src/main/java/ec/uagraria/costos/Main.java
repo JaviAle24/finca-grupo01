@@ -4,20 +4,39 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        // Control de los Pasos 2 y 3: lote de banano de 4 ha
+        // Lote de prueba: 4 ha de banano Cavendish
         Lote lote = new Lote("L-01", new Banano("Cavendish"), 4.0, List.of(
                 new Insumo("Urea 50 kg", 12, "saco", 32.50),
                 new Insumo("Fungicida", 8, "litro", 21.75),
                 new Insumo("Semilla certificada", 1, "lote", 180.00)));
-        System.out.println("Costo de insumos: " + lote.costoInsumos());
-        System.out.println("Jornales banano: " + lote.jornalesPorHectarea());
 
-        // Cada rama del switch, con lotes sin insumos
-        System.out.println("Jornales cacao orgánico: "
-                + new Lote("L-02", new Cacao("Nacional", true), 1, List.of()).jornalesPorHectarea());
-        System.out.println("Jornales cacao convencional: "
-                + new Lote("L-03", new Cacao("CCN-51", false), 1, List.of()).jornalesPorHectarea());
-        System.out.println("Jornales arroz 2 ciclos: "
-                + new Lote("L-04", new Arroz(2), 1, List.of()).jornalesPorHectarea());
+        CalculadoraCostos calc = new CalculadoraCostos();
+        System.out.println("Sin estrategia: " + calc.calcular(lote)); // Optional.empty
+
+        calc.setEstrategia(Estrategia.costoDirecto());
+        System.out.println("Costo directo: " + calc.calcular(lote).orElseThrow());
+
+        calc.setEstrategia(Estrategia.costoConManoDeObra());
+        System.out.println("Insumos + mano de obra: " + calc.calcular(lote).orElseThrow());
+
+        calc.setEstrategia(Estrategia.costoPorHectarea());
+        System.out.println("Costo por hectárea: " + calc.calcular(lote).orElseThrow());
+
+        calc.setEstrategia(Estrategia.costoConSubsidioFertilizante(0.20));
+        System.out.println("Con subsidio 20 % urea: "
+                + CalculadoraCostos.redondear(calc.calcular(lote).orElseThrow()));
+
+        calc.setEstrategia(Estrategia.conIva(Estrategia.costoConManoDeObra()));
+        System.out.println("Con IVA 15 %: "
+                + CalculadoraCostos.redondear(calc.calcular(lote).orElseThrow()));
+
+        // Segundo lote: 2,5 ha de cacao Nacional orgánico
+        Lote cacao = new Lote("L-02", new Cacao("Nacional", true), 2.5, List.of(
+                new Insumo("Urea 50 kg", 5, "saco", 32.50),
+                new Insumo("Abono orgánico", 30, "saco", 9.80)));
+        System.out.println("Cacao orgánico - jornales/ha: " + cacao.jornalesPorHectarea());
+        calc.setEstrategia(Estrategia.costoConManoDeObra());
+        System.out.println("Cacao orgánico - insumos + mano de obra: "
+                + CalculadoraCostos.redondear(calc.calcular(cacao).orElseThrow()));
     }
 }
