@@ -1,10 +1,10 @@
-package semana2.finca;
+package ec.edu.uagraria.trazacacao.dominio;
 public class Demo {
     public static void main(String[] args) {
         java.util.List<Activo> activos = java.util.List.of(
                 new Producto("PR-001", "Saco de hierbita", 10.10, 5),
-                new Cultivo("CU-001", "tomate", 4.0, 180.0),
-                new Animal("AN-001", "carne de vaca", 10.6, 10.5));
+                new CacaoEnGrano("CU-001", "tomate", 4.0, 180.0),
+                new LoteFermentacion("AN-001", "carne de vaca", 10.6, 10.5));
         double total = 0;
         for (Activo a : activos) {
             double v = Valorador.valor(a);

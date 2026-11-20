@@ -1,4 +1,4 @@
-package semana2.finca;
+package ec.edu.uagraria.trazacacao.dominio;
 
 public enum UnidadMedida {
     KILOGRAMO("kg", 1.0), QUINTAL("qq", 45.36), TONELADA("t", 1000.0);

@@ -1,4 +1,4 @@
-package semana2.finca;
+package ec.edu.uagraria.trazacacao.dominio;
 
 public record Producto(String codigo, String nombre, double precioUnitario,
                        int unidades) implements Activo {
