@@ -9,3 +9,4 @@ Integrantes                                ||Rol                                
 Docente:
 Ing. Hamilton Francisco Villamar Barros, MSc
 Cuarto semestre – Paralelo B
+Se utilizo la ia para corregir codigos
