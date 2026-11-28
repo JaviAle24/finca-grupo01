@@ -3,12 +3,13 @@ package ec.uagraria.costos;
 
 
 import java.util.List;
+import ec.edu.uagraria.trazacacao.dominio.InsumoAgricola;
 
 
 
 public record Lote(String codigo, Cultivo cultivo, double hectareas,
 
-                   List<Insumo> insumos) {
+                   List<InsumoAgricola> insumos) {
 
     public Lote {
 
@@ -22,7 +23,7 @@ public record Lote(String codigo, Cultivo cultivo, double hectareas,
 
         double total = 0.0;
 
-        for (Insumo i : insumos) { total += i.costo(); }
+        for (InsumoAgricola i : insumos) { total += i.costo(); }
 
         return total;
 

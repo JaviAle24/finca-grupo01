@@ -1,6 +1,6 @@
 package ec.edu.uagraria.trazacacao.reglas;
 
-import ec.edu.uagraria.semana2.finca.Lote;
+import ec.uagraria.costos.Lote;
 
 @FunctionalInterface
 public interface EstrategiaCosto {

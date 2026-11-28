@@ -1,4 +1,6 @@
 package ec.uagraria.costos;
+import ec.edu.uagraria.trazacacao.dominio.InsumoAgricola;
+import ec.edu.uagraria.trazacacao.reglas.EstrategiaCosto;
 
 public final class Estrategia {
 
@@ -24,7 +26,7 @@ public final class Estrategia {
         return lote -> {
             double descuento = lote.insumos().stream()
                     .filter(i -> i.nombre().toLowerCase().contains("urea"))
-                    .mapToDouble(Insumo::costo) // referencia a método
+                    .mapToDouble(InsumoAgricola::costo) // referencia a método
                     .sum() * porcentaje;
             return costoConManoDeObra().calcular(lote) - descuento;
         };
